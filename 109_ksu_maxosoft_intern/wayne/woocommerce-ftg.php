@@ -154,11 +154,10 @@ function custom_checkout_total_pv() {
  * 在edit order的total加上 pv總量
  */
 add_action('woocommerce_admin_order_totals_after_tax', 'custom_admin_order_totals_after_tax'); /**刪除10,0後即可於function取得orderid*/
-function custom_admin_order_totals_after_tax($test) {
-        global $the_order;
-        $order = new WC_Order( $test);
-        $items = $order->get_items(); 
-        $label = __( 'pv 總量', 'woocommerce' );   
+function custom_admin_order_totals_after_tax($order_id) {
+        $order = new WC_Order($order_id);
+        $items = $order->get_items();
+        $label = __( 'pv 總量', 'woocommerce' );
         $total_pv = 0;
             foreach($items as $order_item){
                 $product_pv = (int) get_post_meta($order_item['product_id'], '_ftg_product_pv', true);
