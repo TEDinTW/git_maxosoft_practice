@@ -145,27 +145,24 @@ function custom_checkout_total_pv() {
             <strong>' . number_format($total_pv) . '</strong>
             </td>
         </tr>';
+            }
         }
     }
-
-}
 
 
 /**
  * 在edit order的total加上 pv總量
  */
-add_action('woocommerce_admin_order_totals_after_tax', 'custom_admin_order_totals_after_tax', 10, 0 );
-function custom_admin_order_totals_after_tax( ) {
+add_action('woocommerce_admin_order_totals_after_tax', 'custom_admin_order_totals_after_tax'); /**刪除10,0後即可於function取得orderid*/
+function custom_admin_order_totals_after_tax($test) {
         global $the_order;
-        $order = new WC_Order( $order_id );
+        $order = new WC_Order( $test);
         $items = $order->get_items(); 
         $label = __( 'pv 總量', 'woocommerce' );   
         $total_pv = 0;
-        print_r($order);
-            foreach($order as $order_item){
+            foreach($items as $order_item){
                 $product_pv = (int) get_post_meta($order_item['product_id'], '_ftg_product_pv', true);
                 $total_pv += $product_pv * $order_item['quantity'];
-            
             ?>
             <tr>
                 <td class="label"><?php echo $label; ?>:</td>
@@ -173,8 +170,8 @@ function custom_admin_order_totals_after_tax( ) {
                 <td class="custom-total"><?php echo $total_pv; ?></td>
             </tr>
         <?php
-    }    
-}
+        }    
+    }
 /**
  * 在orders 加上pv 總量
  */
@@ -200,15 +197,13 @@ function custom_admin_order_totals_after_tax( ) {
             $total_pv = 0;
             if (!is_wp_error($order_items)){
                 foreach($order_items as $order_item){
-
                     $product_pv = (int) get_post_meta($order_item['product_id'], '_ftg_product_pv', true);
                     $total_pv += $product_pv * $order_item['quantity'];
                 }
-        }
+            }
             echo $total_pv;       
+        }
     }
-
-}
 /**
  * 送出訂單至泛團購
  */
