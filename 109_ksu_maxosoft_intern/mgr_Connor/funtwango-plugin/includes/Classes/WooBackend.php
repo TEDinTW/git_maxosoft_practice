@@ -6,25 +6,27 @@
 
 namespace Includes\Classes;
 
+use WC_Order;
+
 class WooBackend
 {
     public function register()
     {
 
         // check woocommerce is active
-        if ( ! $this->checkWoocommerceActive() ) {
+        if (!$this->checkWoocommerceActive()) {
             return;
         }
 
         // shop-order
-        add_filter('manage_edit-shop_order_columns', array( $this, 'ftg_order_items_column' ) );
+        add_filter('manage_edit-shop_order_columns', array($this, 'ftg_order_items_column'));
 
-        add_action('manage_shop_order_posts_custom_column', array( $this, 'ftg_order_items_column_cnt' ) );
+        add_action('manage_shop_order_posts_custom_column', array($this, 'ftg_order_items_column_cnt'));
 
         // Display Fields
-        add_action('woocommerce_product_options_general_product_data', array( $this, 'woocommerce_product_custom_fields') );
+        add_action('woocommerce_product_options_general_product_data', array($this, 'woocommerce_product_custom_fields'));
         // Save Fields
-        add_action('woocommerce_process_product_meta', array( $this, 'woocommerce_product_custom_fields_save') );
+        add_action('woocommerce_process_product_meta', array($this, 'woocommerce_product_custom_fields_save'));
     }
 
 

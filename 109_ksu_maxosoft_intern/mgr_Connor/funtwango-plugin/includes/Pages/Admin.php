@@ -36,8 +36,64 @@ class Admin
 
         $this->settings->addPages($this->pages)->addSubPages($this->subpages)->register();
 
+        add_action('wp_ajax_nopriv_post_site_data', array( $this, 'post_site_data') );
+        add_action('wp_ajax_post_site_data', array( $this, 'post_site_data') );
     }
 
+    function post_site_data() {
+
+        if ( ! DOING_AJAX || ! check_ajax_referer('ajax-nonce', 'nonce') ) {
+            die();
+        }
+
+        $url = "http://dev.funtwango.com/api/v1/for_connor_echo";
+    
+        $args = array(
+            'headers' => array(
+    
+            ),
+            'body' => array(
+                'web_name' => 'FTG',
+                'site_ID' => 'site12345',
+                'site_key' => 'site12345',
+                'site_hash' => 'site12345',
+                'code' => array(
+                    'site_ID' => 'site12345',
+                'site_key' => 'site12345',
+                'site_hash' => 'site12345',
+                ),
+            ),
+        );
+    
+        $response = wp_remote_post($url, $args);
+    
+        // print_r($response);
+    
+        $response_code = wp_remote_retrieve_response_code($response);
+        $body = wp_remote_retrieve_body($response);
+
+        // print_r($response_code);
+        // print_r($body);
+    
+        if ( 401 === $response_code ) {
+            return "Unauthorized access";
+        }
+        if ( 200 !== $response_code ) {
+            return "Error in pinging API";
+        }
+        if ( 200 === $response_code ) {
+            echo $body;
+        }
+    
+        die();
+    }
+
+
+
+
+    /**
+     * Set Pages
+     */
     public function setPages()
     {
         $this->pages = array(
