@@ -1,0 +1,19 @@
+{
+    "name": "connor/funtwango-plugin",
+    "description": "Awesome FTG plugin",
+    "type": "project",
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Includes\\": "./includes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Connor",
+            "email": "t323027@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
