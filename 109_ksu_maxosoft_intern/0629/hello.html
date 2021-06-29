@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+     
+  <div id="app">
+    {{ message }}
+     
+  <input type="text" v-model="score">
+  <div v-if="score>=60">及格</div>
+   <div v-if="score<60">不及格</div>
+      
+   <div id="class">
+    {{ message }}   
+       hello
+      </div>
+      
+       {{score*8}} 
+  </div>
+
+  <script>
+    var duck = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        score:'60',
+        loading:'false'
+          
+      }
+    })   
+  </script>
+</body>
+</html>
