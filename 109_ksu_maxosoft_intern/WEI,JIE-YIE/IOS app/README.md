@@ -7,3 +7,6 @@
 
 ### 進度三
 優化改進ios app
+參考:
+https://medium.com/@tarasuzy00/%E7%94%A8-swift-%E8%A3%BD%E4%BD%9C%E6%92%AD%E6%94%BE%E5%99%A8-ios-avplayer-%E6%95%99%E5%AD%B8-%E4%B8%80-%E8%A8%AD%E5%AE%9A%E4%B8%A6%E6%92%AD%E6%94%BE-avplayer-695dd145d9de
+https://stackoverflow.com/questions/43062870/add-custom-controls-to-avplayer-in-swift
