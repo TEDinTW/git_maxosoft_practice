@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+   {{message}}
+      <ui>
+          <li v-for="item in colors">
+              {{item}}
+              
+          </li>
+      </ui>
+    {{message2}}
+<ui>
+    
+          <li v-for="item in family">
+              {{item.mother}}
+    </li>
+      </ui>
+        
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'color',
+          message2:'family',
+        colors:['black','red','blue'],
+        family:[{mother:'Anna'},{mother:'Natasha'}]
+      }
+    })
+     
+  </script>
+</div>
+</body>
+</html>
