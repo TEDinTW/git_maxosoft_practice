@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+     
+  <div id="app">
+      <button-counter></button-counter>
+      <test></test>
+    </div>
+    
+    <script type="text/javascript">
+        Vue.component('button-counter',{
+            props:['title'],
+            data:function(){
+                return{}
+            },
+            template:'<div><h1>h1...</h1></div>',
+            methods:{
+           
+       }
+        })
+        var vm = new Vue({
+            el:"#app",
+            data :{
+          },
+          methods:{
+              clicknow:function(e){
+                console.log(e);
+              }    
+        },
+            components:{
+                test:{
+                    template:"<h2>h2</h2>"
+                }
+            }
+        });
+    </script>
+    <style text="css">
+    </style>
+    </body>
+</html>
