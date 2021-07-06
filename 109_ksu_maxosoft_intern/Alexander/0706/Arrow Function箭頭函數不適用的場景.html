@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+        <title>Default Arguments</title>
+    </head>
+    <body>
+    <button class="zoom" type="button" >按鈕</button>
+    
+    
+    <!--  1.作為構造函數，一個方法需要綁訂到對象 -->
+    <script>
+    const Person = function(name,points){
+        this.name = name;
+        this.points = points;
+    }
+
+    const Jelly = new Person('jelly',5);
+    Person.prototype.updatePoints = function(){
+        console.log(this)
+      this.points++;
+      console.log(this.points)
+    }
+
+    //  2.當真的需要this的時候 
+     const button = document.querySelector('.zoom');
+     button.addEventListener('click',function(){
+         console.log(this)
+         this.classList.add('in');
+         setTimeout(() =>{
+              this.classList.remove('in');
+              },2000)
+     })
+    
+    //  3.需要使用arguments對象 
+      const sum = function() {
+            return Array.from(arguments)
+                        .reduce((prevSum,value)=> prevSum +
+                        value,0)
+      } 
+  </script>
+ </body>
+ </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+        <title>Arrow Function</title>
+    </head>
+    <body>
+         <script>
+       const Jelly={
+           name:'Jelly',
+           hobbies:['Coding','Sleeping','Reading'],
+           printHobbies:function(){
+            this.hobbies.map(hobby=> {
+                 console.log(this.name+' '+'loves'+' '+ hobby);
+            })
+           }
+       }
+       
+       Jelly.printHobbies();
+           
+    </script>
+ </body>
+ </html>
