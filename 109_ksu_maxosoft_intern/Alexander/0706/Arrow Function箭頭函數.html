@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+        <title>Arrow Function</title>
+    </head>
+    <body>
+         <script>
+       const numbers = [5,6,13,0,1,18,2];
+
+       const double = numbers.map(function(number){
+           return number * 2;
+       });
+
+       const double2 = numbers.map((number)=> number *2);
+       
+       function greet (name){
+           alert('Hello'+name);
+
+       }
+
+       greet('Jelly');
+       console.log(double2);
+       
+           
+    </script>
+ </body>
+ </html>
