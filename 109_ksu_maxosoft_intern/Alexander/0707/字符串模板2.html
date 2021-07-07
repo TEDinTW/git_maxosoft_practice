@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <title>Var-Let-Const</title>
+   
+    </head>
+    <body> 
+        <script>
+            const Jelly={
+                name:'Jelly',
+                data:'2021-07-07',
+                todos:[
+                    {name:'Go to Store', completed: false},
+                    {name:'Watch Movie', completed: true},
+                    {name:'Running', completed: true},
+                ]
+            }
+            function renderTodos(todos){
+                return(
+                    <ul>
+                        ${todos.map(todo =>
+                        <li>
+                            ${tode.name} ${todo.completed ?'ok':'no'}
+                        </li>
+                            ).join('')}
+                    </ul>
+                 )     
+            }
+            const template =
+            <div class="panel">
+                <div class="panel-header">${Jelly.name}</div>
+                <div class="panel-body">
+                    ${renderTodos(Jelly.todes)}
+                    </div>
+                    <div class="panel-footer">${Jelly.data}</div>
+                    </div>
+                    documet.body.innerHTML=template;
+            </script>
+        </body>
+        </html>
