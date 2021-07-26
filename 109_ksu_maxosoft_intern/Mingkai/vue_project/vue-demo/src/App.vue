@@ -1,52 +1,55 @@
 <template>
-      <h1>chart.js</h1>
-  <div class="container">
+  <div id="app">
     <div class="row">
-      <div class="card" style="width: 18rem">
-        <h5 class="card-title" align="center" valign="center">A公司Bar</h5>
-        <div class="col" style="height: 300px; width: 300px"><MonthlyChart /></div>
-        <div class="card-body">
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the
-            card's content.
-          </p>
-          <button class="btn-primary" >Read more</button>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <h5 class="card-title" align="center" valign="center">A公司Doughnut</h5>
-        <div class="col" style="height: 300px; width: 300px"><doughnut /></div>
-        <div class="card-body">
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the
-            card's content.
-          </p>
-          <button class="btn-primary" >Read more</button>
-        </div>
-      </div>
+      <!-- <div class="col" v-for="(item, index) in user" :key="index"> -->
+      <child2 :data="data" option="option"> </child2>
+      <!-- </div> -->
     </div>
   </div>
-
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import MonthlyChart from "./components/chart.vue";
-import doughnut from "./components/chartdoughnut.vue";
-
-
-export default defineComponent({
+import child2 from "./components/child2.vue";
+export default {
   name: "App",
   components: {
-    MonthlyChart,
-    doughnut
-  }
-})
+    child2,
+  },
+  data() {
+    return {
+      data: {
+        title: "公司1",
+        labels: ["January", "February"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgb(255, 99, 132)",
+            data: [560, 20],
+            borderWidth: 1,
+          },
+        ],
+      },
+      option: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+  },
+};
 </script>
 
-
 <style>
-.h1{
-  font:center
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  padding: 1em;
 }
 </style>

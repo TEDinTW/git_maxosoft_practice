@@ -12,6 +12,7 @@ export default defineComponent({
       labels: ['一月', '二月', '三月', '四月', '五月', '六月'],
       datasets: [
         {
+          title: 'Hello Vue',
           label: 'Data 1',
           backgroundColor: '#f87979',
           width: 500,
