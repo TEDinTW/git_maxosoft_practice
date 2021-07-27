@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+     
+  <div id="app">
+    {{tw}}
+     
+  <input type="number"  min="0"   v-model="twd">
+
+  <div id="class">
+    {{message2 }} {{usa*twd}} <br>
+       
+       {{ message3 }}  {{hkd*twd}}<br> 
+       {{ message4 }}  {{gbp*twd}}<br> 
+       {{ message5 }}  {{aud*twd}}<br> 
+       {{ message6 }}  {{jpy*twd}}<br> 
+       {{ message7 }}  {{cny*twd}}
+      
+      </div>
+  </div>
+
+  <script>
+    var duck = new Vue({
+      el: '#app',
+      data: {
+          tw:'台幣',
+          message2:'美金',
+           message3:'港幣',
+          message4:'英鎊',
+          message5:'澳幣',
+          message6:'日圓',
+          message7:'人民幣',
+          twd:'1',
+        usa:'0.03',
+          hkd:'0.29',
+          gbp:'0.02',
+          aud:'0.04',
+          jpy:'5',
+          cny:'0.23',
+     }
+    })   
+  </script>
+</body>
+</html>

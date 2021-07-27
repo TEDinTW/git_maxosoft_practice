@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>to do list</title>
+</head>
+<body>
+  <div class="app">
+    <input type="text" placeholder="請輸入"
+	@keyup.enter="addTodo(newTodo)" v-model="newTodo">
+      <h2>事情列表</h2>
+      <ul>
+          <li v-for="todo in todos">
+            
+		  {{todo.content}}
+		  -<a href= "#" @click.prevent="removeTodo(tode)">刪除</a>
+		  </li>
+      </ul>
+    <script src="https://unpkg.com/vue"></script>
+      
+      <script>
+      var app = new Vue({
+      el: '.app',
+      data: {
+        todos:[],
+        newTodo:''
+      },
+        methods:{
+            addTodo:function(todo){
+                this.todos.push({content:todo,completed:false})
+            },
+            removeTodo:function(todo){
+                this.todos.splice(this.todos.index0f(todo), 1);
+            }
+        }
+    })
+      </script>
+  </div>
+  </body>
+</html>

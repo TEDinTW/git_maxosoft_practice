@@ -1,65 +1,52 @@
 <template>
-	<div id="app">
-		<div class="row">
-			<!-- <div class="col" v-for="(item, index) in user" :key="index">
-				<child :data="item">
-				</child> -->
-          <child2 :data="data" option="option"> </child2>
-	
-		</div>
-	</div>
+      <h1>chart.js</h1>
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width: 18rem">
+        <h5 class="card-title" align="center" valign="center">A公司Bar</h5>
+        <div class="col" style="height: 300px; width: 300px"><MonthlyChart /></div>
+        <div class="card-body">
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the
+            card's content.
+          </p>
+          <button class="btn-primary" >Read more</button>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem">
+        <h5 class="card-title" align="center" valign="center">A公司Doughnut</h5>
+        <div class="col" style="height: 300px; width: 300px"><doughnut /></div>
+        <div class="card-body">
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the
+            card's content.
+          </p>
+          <button class="btn-primary" >Read more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
-import child2 from "./components/child2.vue";
+import { defineComponent } from "vue";
+import MonthlyChart from "./components/chart.vue";
+import doughnut from "./components/chartdoughnut.vue";
 
-export default {
+
+export default defineComponent({
   name: "App",
   components: {
-    child2,
-  },
-  data() {
-    return {
-      data: {
-        title: "A公司",
-        labels: [],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgb(255, 99, 132)",
-            data: [10, 20, 12, 39, 70, 40],
-            borderWidth: 1,
-          },
-          {
-            label: "Data One",
-            backgroundColor: "rgba(153, 102, 255, 0.2)",
-            borderColor: "rgb(153, 102, 255)",
-            data: [60, 55, 32, 10, 2, 12, 53, 62, 25],
-            borderWidth: 1,
-          },
-        ],
-      },
-      option: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    };
-  },
-};
+    MonthlyChart,
+    doughnut
+  }
+})
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  padding: 1em;
+.h1{
+  font:center
 }
 </style>

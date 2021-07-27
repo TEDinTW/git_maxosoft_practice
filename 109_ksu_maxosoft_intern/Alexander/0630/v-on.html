@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+   
+      <h2>家人</h2>
+<ui>
+    
+          <li v-for="item in family" v-on:click="myMa(item.mother)">
+              {{item.mother}}
+    </li>
+      </ui>
+        
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        family:[{mother:'Anna'},{mother:'Natasha'}]
+      },
+        
+        methods:{
+            myMa:function(mother){
+                alert('我的媽媽是'+mother)
+            }
+        }
+    })
+     
+  </script>
+</div>
+</body>
+</html>
+</html>
