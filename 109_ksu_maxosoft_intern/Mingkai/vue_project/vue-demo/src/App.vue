@@ -1,39 +1,60 @@
 <template>
-    <div id="PdfPage2">
-        <div class="no-print">
-            <button type="button" class="btn btn-primary" @click="pdfBtn">匯出PDF</button>
-        </div>
-        <div id="pdfDom" style="padding:10px;background-color:#fff;">
-            <img alt="Vue logo" src="@/assets/logo.png">
-            <h1>Welcome to Your Vue.js App</h1>
-            <p v-for="(item,index) in 6" :key="index">{{item}}Welcome to Your Vue.js App</p>
-        </div>
+  <section v-if="errored">
+    <p>
+      axios 訪問 API似乎發生錯誤!!!!
+    </p>
+  </section>
+
+  <div v-if="loading">Loading...</div>
+
+  <div id="app" class="container">
+    <div>
+      {{ info }}
     </div>
+
+    <div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">code</th>
+            <th scope="col">rate_float</th>
+            <th scope="col">description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="dollars in info" v-bind:key="dollars">
+            <td>{{ dollars.code }}</td>
+            <td>{{ dollars.rate_float }}</td>
+            <td>{{ dollars.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "PdfPage2",
-        methods:{
-            pdfBtn(){
-                window.print();
-            }
-        }
-    }
-</script>
+import axios from "axios";
 
-<style scoped>
-/*儲存時的樣式*/
-/*
-瞭解更多可 百度CSS print樣式
-*/
-@media print{
-    .no-print{
-        display: none;
-    }
-}
-/*列印頁配置*/
-@page{
-    margin:60px 10px;
-}
-</style>
+export default {
+  name: "app",
+  data() {
+    return {
+      loading: true,
+      info: null,
+      errored: false,
+    };
+  },
+  mounted() {
+    this.loading = true;
+    axios
+      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .then((response) => (this.info = response.data.bpi))
+      .catch((error) => {
+        console.log(error);
+        this.errored = true;
+      })//提醒使用者axios 訪問 API有錯誤
+      .finally(() => (this.loading = false)); //載入loading
+  },
+};
+</script>
