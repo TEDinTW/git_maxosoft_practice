@@ -28,12 +28,18 @@
     "vue-chartjs": "^3.5.1",
     "vue-class-component": "^7.2.6",
     "vue-html2pdf": "^1.8.0",
+    "vue-infinite-loading": "^2.4.5",
     "vue-multi-select": "^4.6.0",
     "vue-multiselect": "^2.1.6",
     "vue-resource": "^1.5.3",
     "vue-router": "^4.0.10",
+    "vue-scroll-shadow": "^0.1.0",
     "vue-search-select": "^2.9.3",
-    "vue3-chart-v2": "^0.8.2"
+    "vue-virtual-scroll-list": "^2.3.2",
+    "vue-virtual-scroller": "^1.0.10",
+    "vue3-chart-v2": "^0.8.2",
+    "vue3-perfect-scrollbar": "^1.5.5",
+    "vue3-scroll-shadow": "^0.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

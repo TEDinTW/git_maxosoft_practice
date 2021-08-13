@@ -1,30 +1,15 @@
 <template>
-  <div>
-    <Multiselect
-      v-model="value"
-      :options="options"
-    />
-  </div>
+    <div>
+        <perfect-scrollbar>
+            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </perfect-scrollbar>
+    </div>
 </template>
-
 <script>
-  import Multiselect from '@vueform/multiselect'
-    
-  export default {
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+export default {
     components: {
-      Multiselect,
-    },
-    data() {
-      return {
-        value: null,
-        options: [
-          'Batman',
-          'Robin',
-          'Joker',
-        ]
-      }
+        PerfectScrollbar
     }
-  }
+}
 </script>
-
-<style src="@vueform/multiselect/themes/default.css"></style>

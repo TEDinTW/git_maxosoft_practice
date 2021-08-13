@@ -4,47 +4,55 @@
   </section>
 
   <div v-if="loading">Loading...</div>
-  <selected></selected>
+  <!-- <selected></selected> -->
 
-  <div id="app" class="container">
-    <div>
-      {{ info }}
+  <div id="app">
+    <h1>Demo</h1>
+    <div class="faq-body">
+      <div v-for="(item, index) in info" :key="item" class="faq-question">
+        <label>{{ index }}:{{ item.id }}&{{ item.weight }}</label>
+        <input type="checkbox" v-model="answer" :value="item" />
+
+        <!-- <input type="checkbox" id="checkbox" v-model="answer"> {{index}}-{{item.id}}:{{item.weight}} -->
+      </div>
     </div>
   </div>
-  <div id="app">
-    <h1>Todos</h1>
-    <ul>
-      <li v-for="item of info" :key="item">
-        {{ item[0] }} ,{{ item[0].id }},{{ item[0].weight }} {{ item[1] }},{{
-          item[1].id
-        }},{{ item[1].weight }}
-      </li>
-    </ul>
-  </div>
-
+  <br>
+  <select v-model="selected">
+    <option selected>Input</option>
+    <option>Output</option>
+    <option>不良品</option>
+  </select>
+  <span> 選擇資料加入區域:{{ selected }}</span>
+  <br />
+  <br />
+  {{ answer }}
   <card></card>
 </template>
 
 <script>
 import axios from "axios";
 import card from "./components/card.vue";
-import selected from "./components/select.vue";
+// import selected from "./components/select.vue";
+// import VueScrollShadow from 'vue3-scroll-shadow'
 
 export default {
-  components: { card, selected },
+  components: { card },
   name: "app",
   data() {
     return {
       loading: true,
-      info: null,
+      info: [],
       errored: false,
+      selected: "",
+      answer: [],
     };
   },
   mounted() {
     this.loading = true;
     axios
       .get("https://yjserp.maxosoft.com/api/final_demo")
-      .then((response) => (this.info = response.data))
+      .then((response) => (this.info = response.data.products))
       .then((data) => console.log(data))
       .catch((error) => {
         console.log(error);
@@ -54,3 +62,36 @@ export default {
   },
 };
 </script>
+<style>
+.faq-body {
+  width: auto;
+  height: 400px;
+  background: #fff;
+  overflow: scroll;
+  border: 3px solid #7b7d7f;
+  border-radius: 20px;
+}
+
+.faq-body::-webkit-scrollbar {
+  width: 20px;
+}
+.faq-body::-webkit-scrollbar-thumb {
+  background-color: #7b7d7f;
+  border: 5px solid #fff;
+  border-radius: 10rem;
+}
+.faq-body::-webkit-scrollbar-track {
+  position: absolute;
+  right: -3rem;
+  top: -50rem;
+  background: transparent;
+}
+
+.faq-question {
+  padding: 20px;
+  border-bottom: 1px solid #000;
+  line-height: 1.3;
+  color: #15191b;
+  font-size: 0.8rem;
+}
+</style>
