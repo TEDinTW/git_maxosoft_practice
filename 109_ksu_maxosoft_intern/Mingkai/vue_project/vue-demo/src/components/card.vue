@@ -10,7 +10,7 @@
                   <div id="app">
                       
 </div>
-    <div class="faq-question-input">
+    <div class="faq-body-input">
     <div v-for="(item,index) in answer" :key="item" class="faq-question-input" >
     <input type="checkbox" :value="item" :label="index"/>
         <label>{{ item.id }}&{{ item.weight }}</label>
@@ -191,7 +191,7 @@ float: left;
 }
 
 .faq-question-input {
-  padding: 8px;
+  padding: 20px;
   border-bottom: 1px solid #000;
   line-height: 1.3;
   color: #15191b;
