@@ -10,9 +10,9 @@
     <h1>Demo</h1>
     <div class="faq-body">
       <div v-for="(item, index) in info" :key="item" class="faq-question">
-        <label>{{ index }}:{{ item.id }}&{{ item.weight }}</label>
-        <input type="checkbox" v-model="answer" :value="item" />
-
+          <input type="checkbox" v-model="answer" :value="item" :label="index"/>
+        <label>{{ index }} :{{ item.id }}&{{ item.weight }}</label>
+       
         <!-- <input type="checkbox" id="checkbox" v-model="answer"> {{index}}-{{item.id}}:{{item.weight}} -->
       </div>
     </div>
@@ -27,7 +27,11 @@
   <br />
   <br />
   {{ answer }}
-  <card></card>
+  <br>
+  <card :answer="answer"></card>
+  <h2>Lose:</h2>
+   <h2>得利:</h2>
+
 </template>
 
 <script>
@@ -68,15 +72,15 @@ export default {
   height: 400px;
   background: #fff;
   overflow: scroll;
-  border: 3px solid #7b7d7f;
-  border-radius: 20px;
+  border: 5px solid #8F4586;
+  border-radius: 10px;
 }
 
 .faq-body::-webkit-scrollbar {
   width: 20px;
 }
 .faq-body::-webkit-scrollbar-thumb {
-  background-color: #7b7d7f;
+  background-color: #8F4586;
   border: 5px solid #fff;
   border-radius: 10rem;
 }
@@ -92,6 +96,6 @@ export default {
   border-bottom: 1px solid #000;
   line-height: 1.3;
   color: #15191b;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
 }
 </style>
