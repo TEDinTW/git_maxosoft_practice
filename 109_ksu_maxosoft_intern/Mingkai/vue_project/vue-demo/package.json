@@ -23,6 +23,7 @@
     "core-js": "^3.16.1",
     "mdbvue": "^6.7.3",
     "selectize": "^0.12.6",
+    "v-switch-case": "^1.0.3",
     "vue": "^3.2.2",
     "vue-axios": "^3.2.5",
     "vue-chartjs": "^3.5.1",

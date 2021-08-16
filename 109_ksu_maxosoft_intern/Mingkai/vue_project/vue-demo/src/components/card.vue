@@ -1,15 +1,44 @@
 <template>
   <div id="app">
-  <div class="card border-dark" id="left">
-    <div class="card-header">
-      <h3>Input</h3>
-    </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-      <div class="faq-body-input">
-        <div id="app"></div>
-
+    <div class="card border-dark" id="left">
+      <div class="card-header">
+        <h3>Input</h3>
+      </div>
+      <div class="card-body">
+        <p class="card-text"></p>
         <div class="faq-body-input">
+          <div id="app"></div>
+
+          <div class="faq-body-input">
+            <div v-for="item in answer" v-bind:key="item" class="faq-question-input">
+              <label>{{ item.id }}&{{ item.weight }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-dark" id="right-up">
+      <div class="card-header">
+        <h2>Output</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text"></p>
+        <div class="faq-body-output">
+          <div v-for="item in answer" v-bind:key="item" class="faq-question-input">
+            <label>{{ item.id }}&{{ item.weight }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-dark" id="right-down">
+      <div class="card-header">
+        <h2>不良品</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text"></p>
+        <div class="faq-body-no">
           <div v-for="item in answer" v-bind:key="item" class="faq-question-input">
             <label>{{ item.id }}&{{ item.weight }}</label>
           </div>
@@ -17,43 +46,12 @@
       </div>
     </div>
   </div>
-
-  <div class="card border-dark" id="right-up">
-    <div class="card-header">
-      <h2>Output</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-      <div class="faq-body-output">
-        <div class="faq-question-output">Question</div>
-        <div class="faq-question-output">Question</div>
-        <div class="faq-question-output">Question</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card border-dark" id="right-down">
-    <div class="card-header">
-      <h2>不良品</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-      <div class="faq-body-no">
-        <div class="faq-question-no">Question</div>
-        <div class="faq-question-no">Question</div>
-        <div class="faq-question-no">Question</div>
-        <div class="faq-question-no">Question</div>
-        <div class="faq-question-no">Question</div>
-      </div>
-    </div>
-  </div>
-</div>  
 </template>
 
 <script>
 export default {
   name: "card",
-  props: ["answer"],
+  props: ["answer"]
 };
 </script>
 <style>
