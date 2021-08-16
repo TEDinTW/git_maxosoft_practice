@@ -1,4 +1,5 @@
 <template>
+  <div id="app">
   <section v-if="errored">
     <p>axios 訪問 API似乎發生錯誤!!!!</p>
   </section>
@@ -6,32 +7,30 @@
   <div v-if="loading">Loading...</div>
   <!-- <selected></selected> -->
 
-  <div id="app">
     <h1>Demo</h1>
     <div class="faq-body">
       <div v-for="(item, index) in info" :key="item" class="faq-question">
-          <input type="checkbox" v-model="answer" :value="item" :label="index"/>
+        <input type="checkbox" v-model="answer" :value="item" :label="index" />
         <label>{{ index }} :{{ item.id }}&{{ item.weight }}</label>
-       
+
         <!-- <input type="checkbox" id="checkbox" v-model="answer"> {{index}}-{{item.id}}:{{item.weight}} -->
       </div>
     </div>
+    <br />
+    <select v-model="selected">
+      <option selected>Input</option>
+      <option>Output</option>
+      <option>不良品</option>
+    </select>
+    <span> 選擇資料加入區域:{{ selected }}</span>
+    <br />
+    <br />
+    <div>{{ answer }}</div>
+    <br />
+    <card :answer="answer"></card>
+    <h2>Lose:</h2>
+    <h2>得利:</h2>
   </div>
-  <br>
-  <select v-model="selected">
-    <option selected>Input</option>
-    <option>Output</option>
-    <option>不良品</option>
-  </select>
-  <span> 選擇資料加入區域:{{ selected }}</span>
-  <br />
-  <br />
-  {{ answer }}
-  <br>
-  <card :answer="answer"></card>
-  <h2>Lose:</h2>
-   <h2>得利:</h2>
-
 </template>
 
 <script>
@@ -39,7 +38,6 @@ import axios from "axios";
 import card from "./components/card.vue";
 // import selected from "./components/select.vue";
 // import VueScrollShadow from 'vue3-scroll-shadow'
-
 export default {
   components: { card },
   name: "app",
@@ -72,15 +70,14 @@ export default {
   height: 400px;
   background: #fff;
   overflow: scroll;
-  border: 5px solid #8F4586;
+  border: 5px solid #8f4586;
   border-radius: 10px;
 }
-
 .faq-body::-webkit-scrollbar {
   width: 20px;
 }
 .faq-body::-webkit-scrollbar-thumb {
-  background-color: #8F4586;
+  background-color: #8f4586;
   border: 5px solid #fff;
   border-radius: 10rem;
 }
@@ -90,7 +87,6 @@ export default {
   top: -50rem;
   background: transparent;
 }
-
 .faq-question {
   padding: 20px;
   border-bottom: 1px solid #000;
