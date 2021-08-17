@@ -8,12 +8,14 @@
     <!-- <selected></selected> -->
 
     <h1>Demo</h1>
-    <div class="faq-body">
-      <div v-for="(item, index) in info" :key="item" class="faq-question">
-        <input type="checkbox" v-model="answer" :value="item" :label="index" />
-        <label>{{ index }} :{{ item.id }}&{{ item.weight }}</label>
+    <input type="text" v-model="filter" placeholder="Search title.." />
 
-        <!-- <input type="checkbox" id="checkbox" v-model="answer"> {{index}}-{{item.id}}:{{item.weight}} -->
+    <div class="faq-body">
+        <div v-for="(item,index) in filterByTerm" :key="item" class="faq-question">
+        <input type="checkbox" v-model="answer" :value="item" :td="index" /> 
+      <td>{{index}},{{ item.id }},{{item.weight}}</td>
+          <!-- <div v-for="(item, index) in info" :key="item" class="faq-question"> -->
+        <!-- <td>{{ index }},{{ item.id }},{{ item.weight }}</td> --> 
       </div>
     </div>
     <br />
@@ -29,7 +31,9 @@
     <div>{{ answer }}</div>
     <br />
     <card :answer="answer"></card>
-    <h2>Total: <span class="price-content">{{ total_price }}</span></h2>
+    <h2>
+      Total: <span class="price-content">{{ total_price }}</span>
+    </h2>
     <h2>Lose:</h2>
     <h2>得利:</h2>
   </div>
@@ -50,7 +54,10 @@ export default {
       info: [],
       errored: false,
       selected: false,
-      answer: []
+      answer: [],
+      output:[],
+      no:[],
+      filter: ""
     };
   },
   mounted() {
@@ -76,7 +83,12 @@ export default {
         0
       );
     },
-  },
+     filterByTerm() {
+      return this.info.filter(item => {
+        return item.id.toLowerCase().includes(this.filter);
+      });
+    }
+  }
 };
 </script>
 <style>
