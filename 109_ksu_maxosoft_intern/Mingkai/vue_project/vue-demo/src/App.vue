@@ -13,21 +13,25 @@
     <div class="faq-body">
       <div v-for="(item, index) in filterByTerm" :key="item" class="faq-question">
         <input type="checkbox" v-model="answer" :value="item" :td="index" />
-        <td>{{ index }},{{ item.id }},{{ item.weight }}</td>
+        <label>{{ index }},{{ item.id }},{{ item.weight }}</label>
         <!-- <div v-for="(item, index) in info" :key="item" class="faq-question"> -->
         <!-- <td>{{ index }},{{ item.id }},{{ item.weight }}</td> -->
       </div>
     </div>
     <br />
-    <select v-model="selected" v-bind:id="answer">
-      <option selected>Input</option>
-      <option>Output</option>
-      <option>不良品</option>
-    </select>
-    <span> 選擇資料加入區域:{{ selected }}</span>
     <br />
+    <span> 選擇資料加入區域:</span>
+    <select @change="onChange($event)">
+      <option selected>請選擇</option>
+      <option value="input" >Input</option>
+      <option value="output">Output</option>
+      <option value="no">不良品</option>
+    </select>
     <br />
     <div>{{ answer }}</div>
+    <div v-for="item in answer" :key="item">
+      <td>{{ item.id }},{{ item.weight }}</td>
+    </div>
     <br />
     <div class="card border-dark" id="left">
       <div class="card-header">
@@ -36,22 +40,17 @@
       <div class="card-body">
         <p class="card-text"></p>
         <div class="faq-body-input">
-          <div id="app"></div>
-
-          <div class="faq-body-input">
-            <div
-              v-for="(item, index) in answer"
-              v-bind:key="item"
-              class="faq-question-input"
-            >
-              <label>{{ item.id }}&{{ item.weight }}</label>
+          <div v-for="answer in input" v-bind:key="answer">
+            <!-- <label>{{ answer}}{{answer.id}}</label> -->
+            <div v-for="item in answer" :key="item" class="faq-question-output">
+              <label>{{ item.id }},{{ item.weight }}</label>
               <button
                 type="button"
                 class="close ml-auto"
-                @click="deleteTodo(index)"
+                @click="deleteTodo1(index)"
                 aria-label="Close"
               >
-              <!-- 刪除的button -->
+                <!-- 刪除的button -->
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -67,9 +66,20 @@
       <div class="card-body">
         <p class="card-text"></p>
         <div class="faq-body-output">
-          <div v-for="item in answer" v-bind:key="item" class="faq-question-input">
-            <label>{{ item.id }}&{{ item.weight }}</label>
-            <div>{{ output }}</div>
+          <div v-for="answer in output" v-bind:key="answer">
+            <!-- <label>{{ answer}}{{answer.id}}</label> -->
+            <div v-for="item in answer" :key="item" class="faq-question-output">
+              <label>{{ item.id }},{{ item.weight }}</label>
+              <button
+                type="button"
+                class="close ml-auto"
+                @click="deleteTodo2(index)"
+                aria-label="Close"
+              >
+                <!-- 刪除的button -->
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -82,9 +92,20 @@
       <div class="card-body">
         <p class="card-text"></p>
         <div class="faq-body-no">
-          <div v-for="item in answer" v-bind:key="item" class="faq-question-input">
-            <label>{{ item.id }}&{{ item.weight }}</label>
-            <div>{{ no }}</div>
+          <div v-for="answer in no" v-bind:key="answer">
+            <!-- <label>{{ answer}}{{answer.id}}</label> -->
+            <div v-for="item in answer" :key="item" class="faq-question-no">
+              <label>{{ item.id }},{{ item.weight }}</label>
+              <button
+                type="button"
+                class="close ml-auto"
+                @click="deleteTodo3(index)"
+                aria-label="Close"
+              >
+                <!-- 刪除的button -->
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -109,8 +130,8 @@ export default {
       errored: false,
       selected: [],
       answer: [],
-      output: [],
       input: [],
+      output: [],
       no: [],
       filter: "",
     };
@@ -146,8 +167,23 @@ export default {
     },
   },
   methods: {
-    deleteTodo(index) { //刪除不需要的list
-    this.answer.splice(index, 1);
+    deleteTodo1(index) {
+      //刪除不需要的list
+      this.answer.splice(index, 1);
+    },
+    deleteTodo2(index) {
+      //刪除不需要的list
+      this.answer.splice(index, 1);
+    },
+    deleteTodo3(index) {
+      //刪除不需要的list
+      this.no.splice(index, 1);
+    },
+    onChange: function (e) {
+      if (e.target.value == "input") {
+        this.input.push(this.answer);
+      } else if (e.target.value == "output") this.output.push(this.answer);
+      else if (e.target.value == "no") this.no.push(this.answer);
     },
   },
 };
@@ -276,5 +312,9 @@ export default {
   background-color: #7b7d7f;
   border: 5px solid #fff;
   border-radius: 10rem;
+}
+#x{
+      top: 70px;
+
 }
 </style>
