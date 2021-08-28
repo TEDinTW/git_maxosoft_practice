@@ -23,7 +23,7 @@
     <span> 選擇資料加入區域:</span>
     <select @change="onChange($event)">
       <option selected>請選擇</option>
-      <option value="input" >Input</option>
+      <option value="input">Input</option>
       <option value="output">Output</option>
       <option value="no">不良品</option>
     </select>
@@ -38,11 +38,12 @@
         <h3>Input</h3>
       </div>
       <div class="card-body">
+        <h5>Total: {{ total_input }}</h5>
         <p class="card-text"></p>
         <div class="faq-body-input">
           <div v-for="answer in input" v-bind:key="answer">
             <!-- <label>{{ answer}}{{answer.id}}</label> -->
-            <div v-for="item in answer" :key="item" class="faq-question-output">
+            <div v-for="item in answer" :key="item" class="faq-question-input">
               <label>{{ item.id }},{{ item.weight }}</label>
               <button
                 type="button"
@@ -64,6 +65,7 @@
         <h2>Output</h2>
       </div>
       <div class="card-body">
+        <h5>Total: {{ total_output }}</h5>
         <p class="card-text"></p>
         <div class="faq-body-output">
           <div v-for="answer in output" v-bind:key="answer">
@@ -90,6 +92,7 @@
         <h2>不良品</h2>
       </div>
       <div class="card-body">
+        <h5>Total: {{ total_no }}</h5>
         <p class="card-text"></p>
         <div class="faq-body-no">
           <div v-for="answer in no" v-bind:key="answer">
@@ -110,11 +113,9 @@
         </div>
       </div>
     </div>
-    <h2>
-      Total: <span class="price-content">{{ total_price }}</span>
-    </h2>
     <h2>Lose:</h2>
     <h2>得利:</h2>
+    {{ output }}
   </div>
 </template>
 
@@ -150,11 +151,11 @@ export default {
   },
   computed: {
     //計算選擇的item的weight sum
-    total_price: function () {
+    total_input: function () {
       return _.reduce(
         this.answer,
-        function (memo, item) {
-          return memo + item.weight;
+        function (total, item) {
+          return total + item.weight;
         },
         0
       );
@@ -165,6 +166,25 @@ export default {
         return item.id.toLowerCase().includes(this.filter);
       });
     },
+    total_output: function () {
+            return _.reduce(
+        this.output,
+        function (total, item) {
+          return total + item.weight;
+        },
+        0
+      );
+    },
+    total_no: function () {
+      return _.reduce(
+        this.answer,
+        function (total, proxy) {
+          return total + proxy.weight;
+        },
+        0
+      );
+    },
+  
   },
   methods: {
     deleteTodo1(index) {
@@ -177,11 +197,13 @@ export default {
     },
     deleteTodo3(index) {
       //刪除不需要的list
-      this.no.splice(index, 1);
+      this.answer.splice(index, 1);
     },
     onChange: function (e) {
+
       if (e.target.value == "input") {
         this.input.push(this.answer);
+        console.log(this.answer)
       } else if (e.target.value == "output") this.output.push(this.answer);
       else if (e.target.value == "no") this.no.push(this.answer);
     },
@@ -271,13 +293,13 @@ export default {
 }
 .faq-body-output {
   width: 370px;
-  height: 230px;
+  height: 210px;
   background: #fff;
   overflow: scroll;
   border: 1px solid #7b7d7f;
 }
 .faq-question-output {
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid #000;
   line-height: 1.3;
   color: #15191b;
@@ -293,13 +315,13 @@ export default {
 }
 .faq-body-no {
   width: 370px;
-  height: 230px;
+  height: 210px;
   background: #fff;
   overflow: scroll;
   border: 1px solid #7b7d7f;
 }
 .faq-question-no {
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid #000;
   line-height: 1.3;
   color: #15191b;
@@ -313,8 +335,7 @@ export default {
   border: 5px solid #fff;
   border-radius: 10rem;
 }
-#x{
-      top: 70px;
-
+#x {
+  top: 70px;
 }
 </style>
